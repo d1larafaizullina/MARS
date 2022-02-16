@@ -1,5 +1,5 @@
 from flask import Flask, url_for
-
+import os
 
 app = Flask(__name__)
 
@@ -7,24 +7,32 @@ app = Flask(__name__)
 # Колонизация Марса
 @app.route('/')
 def show():
-    return "Миссия Колонизация Марса"
+    return f"""<!doctype html>
+                <html lang="en">
+                  <head>
+                    <meta charset="utf-8">
+                    <title>Миссия Колонизация Марса</title>
+                  </head>
+                  <body>
+                    <h1>Миссия Колонизация Марса</h1>
+                  </body>
+                </html>"""
 
 
 @app.route('/index')
 def index():
-    return "И на Марсе будут яблони цвести!"
+    with open('cgi-bin/index.html', 'r', encoding='utf-8') as html_stream:
+        return html_stream.read()
 
 
 # Рекламная кампания
 @app.route('/promotion')
 def promotion():
-    return '''Человечество вырастает из детства.<br><br>
-              Человечеству мала одна планета.<br><br>
-              Мы сделаем обитаемыми безжизненные пока планеты.<br><br>
-              И начнем с Марса!<br><br>
-              Присоединяйся!'''
+    with open('cgi-bin/promotion.html', 'r', encoding='utf-8') as html_stream:
+        return html_stream.read()
 
 
+# Изображение Марса
 @app.route('/image_mars')
 def image_mars():
     return f"""<!doctype html>
@@ -41,5 +49,13 @@ def image_mars():
                 </html>"""
 
 
+# Реклама с картинкой
+@app.route('/promotion_image')
+def promotion_image():
+    with open("cgi-bin/promotion_image.html", 'r', encoding='utf-8') as html_stream:
+        return html_stream.read()
+
+
 if __name__ == '__main__':
+    print(os.getcwd())
     app.run(port=8080, host='127.0.0.1')
