@@ -1,4 +1,4 @@
-from flask import Flask, url_for
+from flask import Flask, url_for, request
 import os
 
 app = Flask(__name__)
@@ -54,6 +54,16 @@ def image_mars():
 def promotion_image():
     with open("cgi-bin/promotion_image.html", 'r', encoding='utf-8') as html_stream:
         return html_stream.read()
+
+
+# Отбор астронавтов
+@app.route('/astronaut_selection', methods=['POST', 'GET'])
+def astronaut_selection():
+    if request.method == 'GET':
+        with open("cgi-bin/astronaut_selection.html", 'r', encoding='utf-8') as html_stream:
+            return html_stream.read()
+    elif request.method == 'POST':
+        return "Форма отправлена"
 
 
 if __name__ == '__main__':
