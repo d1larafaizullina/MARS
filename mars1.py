@@ -43,7 +43,7 @@ def image_mars():
                   </head>
                   <body>
                     <h1>Жди нас, Марс!</h1>
-                    <img src="{url_for('static', filename='img/mars2.png')}" 
+                    <img src="{url_for('static', filename='img/mars2.png')}"
                     alt="здесь должна была быть картинка, но не нашлась">
                   </body>
                 </html>"""
@@ -52,7 +52,8 @@ def image_mars():
 # Реклама с картинкой
 @app.route('/promotion_image')
 def promotion_image():
-    with open("cgi-bin/promotion_image.html", 'r', encoding='utf-8') as html_stream:
+    with open("cgi-bin/promotion_image.html", 'r',
+              encoding='utf-8') as html_stream:
         return html_stream.read()
 
 
@@ -60,7 +61,8 @@ def promotion_image():
 @app.route('/astronaut_selection', methods=['POST', 'GET'])
 def astronaut_selection():
     if request.method == 'GET':
-        with open("cgi-bin/astronaut_selection.html", 'r', encoding='utf-8') as html_stream:
+        with open("cgi-bin/astronaut_selection.html", 'r',
+                  encoding='utf-8') as html_stream:
             return html_stream.read()
     elif request.method == 'POST':
         return "Форма отправлена"
