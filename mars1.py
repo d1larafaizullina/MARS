@@ -68,6 +68,72 @@ def astronaut_selection():
         return "Форма отправлена"
 
 
+# Варианты выбора
+@app.route('/choice/<planet_name>')
+def choice(planet_name):
+    if planet_name.upper() == 'MARS' or planet_name.upper() == 'МАРС':
+        html = f'''
+        <h1>Мое предложение: {planet_name.upper()}!</h1>
+        <div class="alert alert-primary" role="alert">
+            <p><strong>Эта планета близка к земле;</strong></p>
+        </div>
+        <div class="alert alert-secondary" role="alert">
+            <p><strong>На ней много необходимых ресурсов;</strong></p>
+        </div>
+        <div class="alert alert-success" role="alert">
+            <p><strong>На ней есть вода и атмосфера;</strong></p>
+        </div>
+        <div class="alert alert-primary" role="alert">
+            <p><strong>На ней есть небольшое магнитное поле;</strong></p>
+        </div>
+        <div class="alert alert-secondary" role="alert">
+            <p><strong>Наконец она просто красива!</strong></p>
+        </div>
+        '''
+    elif planet_name.upper() == 'ВЕНЕРА' or planet_name.upper() == 'VENUS':
+        html = f'''
+        <h1>Мое предложение: {planet_name.upper()}!</h1>
+        <div class="alert alert-primary" role="alert">
+            <p><strong>Эта планета близка к земле;</strong></p>
+        </div>
+        <div class="alert alert-secondary" role="alert">
+            <p><strong>На ней много необходимых ресурсов;</strong></p>
+        </div>
+        <div class="alert alert-success" role="alert">
+            <p><strong>На ней не холодно;</strong></p>
+        </div>
+        <div class="alert alert-primary" role="alert">
+            <p><strong>На ней всегда лето;</strong></p>
+        </div>
+        <div class="alert alert-secondary" role="alert">
+            <p><strong>Наконец она просто красива!</strong></p>
+        </div>
+        '''
+    else:
+        html = f'''
+        <div class="alert alert-danger" role="alert">
+        <p><strong>Увы, предложения планеты с именем \'{planet_name.upper()}\'
+         нет</strong></p>
+        </div>
+        '''
+    return f'''<!doctype html>
+                <html lang="en">
+                  <head>
+                    <meta charset="utf-8">
+                    <meta name="viewport" content="width=device-width,
+                     initial-scale=1, shrink-to-fit=no">
+                   <link rel="stylesheet"
+                   href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+                   integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+                   crossorigin="anonymous">
+                    <title>Планета: {planet_name}</title>
+                  </head>
+                  <body>
+                    {html}
+                  </body>
+                </html>'''
+
+
 if __name__ == '__main__':
     print(os.getcwd())
-    app.run(port=8080, host='127.0.0.1')
+    app.run(port=8080, host='127.0.0.1', debug=True)
