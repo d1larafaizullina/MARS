@@ -145,7 +145,8 @@ def results(nickname, level, rating):
                 <html lang="en">
                   <head>
                     <meta charset="utf-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+                    <meta name="viewport" content="width=device-width,
+                     initial-scale=1, shrink-to-fit=no">
                     <link rel="stylesheet"
                    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
                    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
@@ -155,8 +156,10 @@ def results(nickname, level, rating):
                   <body>
                     <h1>Результаты отбора</h1>
                     <h3>Претендента на участие в миссии {nickname}:</h3>
-                    <div class="alert alert-success">Поздравляем! Ваш рейтинг после {level} этапа отбора</div>
-                    <div class="alert alert-secondary">составляет {rating}!</div>
+                    <div class="alert alert-success">Поздравляем!
+                     Ваш рейтинг после {level} этапа отбора</div>
+                    <div class="alert alert-secondary">
+                    составляет {rating}!</div>
                     <div class="alert alert-warning">Желаем удачи!</div>
                   </body>
                 </html>'''
@@ -168,7 +171,8 @@ def load_photo():
     if request.method == 'POST':
         file_content = request.files['file_content']
         if file_content:
-            file_content.save(os.path.join(app.config['UPLOAD_FOLDER'], 'upload.png'))
+            file_content.save(os.path.join(app.config['UPLOAD_FOLDER'],
+                                           'upload.png'))
     with open("cgi-bin/load_photo.html", 'r',
               encoding='utf-8') as html_stream:
         return html_stream.read()
