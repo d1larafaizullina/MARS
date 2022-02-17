@@ -1,7 +1,11 @@
 from flask import Flask, url_for, request
 import os
 
+# папка для сохранения загруженных файлов
+UPLOAD_FOLDER = 'static/uploads/'
 app = Flask(__name__)
+# конфигурируем
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
 # Колонизация Марса
@@ -156,6 +160,26 @@ def results(nickname, level, rating):
                     <div class="alert alert-warning">Желаем удачи!</div>
                   </body>
                 </html>'''
+
+
+# Загрузка файла
+@app.route('/load_photo', methods=['POST', 'GET'])
+def load_photo():
+    if request.method == 'POST':
+        file_content = request.files['file_content']
+        if file_content:
+            file_content.save(os.path.join(app.config['UPLOAD_FOLDER'], 'upload.png'))
+    with open("cgi-bin/load_photo.html", 'r',
+              encoding='utf-8') as html_stream:
+        return html_stream.read()
+
+
+# Пейзажи Марса
+@app.route('/carousel')
+def carousel():
+    with open("cgi-bin/carousel.html", 'r',
+              encoding='utf-8') as html_stream:
+        return html_stream.read()
 
 
 if __name__ == '__main__':
