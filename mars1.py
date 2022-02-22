@@ -1,10 +1,15 @@
+"""
+Решение задач:
+WEB. Введение во flask. Обработка HTML-форм
+"""
+
+
 from flask import Flask, url_for, request
 import os
 
 # папка для сохранения загруженных файлов
 UPLOAD_FOLDER = 'static/uploads/'
 app = Flask(__name__)
-# конфигурируем
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
